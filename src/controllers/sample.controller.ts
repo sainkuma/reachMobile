@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { AxiosRequestConfig, default as axios } from 'axios';
 import config from 'config';
 import HttpException from '@exceptions/HttpException';
-import { logger } from '@utils/logger';
 
 class SampleController {
   private baseUrl: string = config.get('baseUrl');
@@ -11,14 +10,12 @@ class SampleController {
     try {
       const imei = req.params.imei;
       const usaData = await this.getApiData(this.baseUrl + `/usa/${imei}`);
-      logger.info('usaData:', usaData);
 
       if (!usaData.data.isValid) {
         res.send({ data: usaData, message: 'isValid False' });
       }
 
       const infoData = await this.getApiData(this.baseUrl + `/info/${imei}`);
-      logger.info('usaData:', infoData);
       res.status(200).send({ data: infoData, message: 'infoData' });
     } catch (e) {
       console.error(e);
