@@ -1,0 +1,11 @@
+{
+    "env": "test",
+    "dbConfig": {
+        "host": "localhost",
+        "user": "root",
+        "password": "password",
+        "database": "typeorm"
+    },
+    "secretKey": "secretKey",
+    "baseUrl": "https://api-qa.reachmobile.com/v0/imei"
+}
